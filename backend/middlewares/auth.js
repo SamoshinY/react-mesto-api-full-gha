@@ -5,7 +5,6 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 
 module.exports = (req, res, next) => {
   const token = req.cookies.jwt;
-  res.send(req.cookies)
 
   if (!token) {
     return next(new AuthError("Нет токена!"));
