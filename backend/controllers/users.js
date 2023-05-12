@@ -53,6 +53,9 @@ module.exports.createUser = (req, res, next) => {
 };
 
 module.exports.getCurrentUser = (req, res, next) => {
+
+  console.log(req.cookies.jwt);
+
   User.findById(req.user._id)
     .orFail()
     .then((user) => res.send(user))
