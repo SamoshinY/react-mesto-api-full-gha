@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
   const token = req.cookies.jwt;
 
   if (!token) {
-    return next(new AuthError("Нет токена!"));
+    return next(new AuthError(/*"Нет токена!"*/`${req.cookies}`));
   }
 
   let payload;
