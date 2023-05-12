@@ -6,9 +6,9 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 module.exports = (req, res, next) => {
   const token = req.cookies.jwt;
 
-  // if (!token) {
-  //   return next(new AuthError("Требуется авторизация!"));
-  // }
+  if (!token) {
+    return next(new AuthError("Требуется авторизация!"));
+  }
 
   let payload;
 
@@ -18,7 +18,7 @@ module.exports = (req, res, next) => {
       NODE_ENV === "production" ? JWT_SECRET : "dev-secret",
     );
   } catch (err) {
-    return next(new AuthError("Требуется авторизация!"));
+    return next(new AuthError("Ошибка токена!"));
   }
 
   req.user = payload;
