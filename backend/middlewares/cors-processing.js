@@ -3,6 +3,7 @@ const allowedCors = [
   "http://praktikum.tk",
   "http://samoshin.nomoredomains.monster",
   "https://samoshin.nomoredomains.monster",
+  "https://samoshin.nomoredomains.monster/users/me",
   "localhost:3000",
   "http://localhost:3000",
 ];
