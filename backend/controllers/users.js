@@ -27,9 +27,7 @@ module.exports.login = (req, res, next) => {
 };
 
 module.exports.deleteJwt = (req, res, next) => {
-  res.cookie("jwt", undefined, {
-    maxAge: 3000,
-  });
+  res.cookie("jwt", undefined);
   res.send({ message: "successful exit" });
 };
 
