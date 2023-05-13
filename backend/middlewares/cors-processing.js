@@ -12,12 +12,10 @@ const allowedCors = [
 const corsOptions = {
   origin: allowedCors,
   credentials: true,
-}
+};
 
- corsHandler.options("*", cors(corsOptions))
- corsHandler.use(cors(corsOptions));
-
-module.exports = corsHandler;
+ const corsHandler = cors(corsOptions);
+ module.exports = corsHandler;
 
 // module.exports = (req, res, next) => {
 //   const { origin } = req.headers;
