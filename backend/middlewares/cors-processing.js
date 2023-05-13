@@ -1,3 +1,5 @@
+const cors = require("cors");
+
 const allowedCors = [
   "https://praktikum.tk",
   "http://praktikum.tk",
@@ -7,26 +9,36 @@ const allowedCors = [
   "http://localhost:3000",
 ];
 
-module.exports = (req, res, next) => {
-  const { origin } = req.headers;
+const corsOptions = {
+  origin: allowedCors,
+  credentials: true,
+}
 
-  if (allowedCors.includes(origin)) {
-    res.header("Access-Control-Allow-Origin", origin);
-    res.header("Access-Control-Allow-Credentials", true);
-  }
+ corsHandler.options("*", cors(corsOptions))
+ corsHandler.use(cors(corsOptions));
 
-  const { method } = req;
+module.exports = corsHandler;
 
-  const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
+// module.exports = (req, res, next) => {
+//   const { origin } = req.headers;
 
-  const requestHeaders = req.headers["access-control-request-headers"];
+//   if (allowedCors.includes(origin)) {
+//     res.header("Access-Control-Allow-Origin", origin);
+//     res.header("Access-Control-Allow-Credentials", true);
+//   }
 
-  if (method === "OPTIONS") {
-    // res.header("Access-Control-Allow-Origin", origin);
-    // res.header("Access-Control-Allow-Credentials", true);
-    res.header("Access-Control-Allow-Methods", DEFAULT_ALLOWED_METHODS);
-    res.header("Access-Control-Allow-Headers", requestHeaders);
-    // return res.end();
-  }
-  return next();
-};
+//   const { method } = req;
+
+//   const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
+
+//   const requestHeaders = req.headers["access-control-request-headers"];
+
+//   if (method === "OPTIONS") {
+//     // res.header("Access-Control-Allow-Origin", origin);
+//     // res.header("Access-Control-Allow-Credentials", true);
+//     res.header("Access-Control-Allow-Methods", DEFAULT_ALLOWED_METHODS);
+//     res.header("Access-Control-Allow-Headers", requestHeaders);
+//     // return res.end();
+//   }
+//   return next();
+// };
