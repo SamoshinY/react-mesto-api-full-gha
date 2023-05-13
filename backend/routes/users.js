@@ -11,7 +11,6 @@ const {
   getUsers,
   updateProfile,
   updateAvatar,
-  deleteJwt,
 } = require("../controllers/users");
 
 userRouter
@@ -19,7 +18,6 @@ userRouter
   .get("/me", getCurrentUser)
   .get("/:userId", idUser, getUser)
   .patch("/me", bodyUser, updateProfile)
-  .patch("/me/avatar", avatarUser, updateAvatar)
-  .delete("/me", deleteJwt);
+  .patch("/me/avatar", avatarUser, updateAvatar);
 
 module.exports = userRouter;
