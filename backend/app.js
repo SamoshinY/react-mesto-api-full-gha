@@ -1,7 +1,5 @@
 require("dotenv").config();
-
 const express = require("express");
-const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const helmet = require("helmet");
 const { PORT = 3000 } = process.env;
@@ -12,6 +10,7 @@ const router = require("./routes/index");
 const errorsHandler = require("./middlewares/handler-errors");
 const rateLimiter = require("./middlewares/rate-limiter");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
+const mongoose = require("mongoose");
 
 mongoose.connect("mongodb://127.0.0.1:27017/mestodb");
 
