@@ -9,14 +9,10 @@ const {
   updateAvatar,
 } = require("../controllers/users");
 
-userRouter.get("/", getUsers);
-
-userRouter.get("/me", getCurrentUser);
-
-userRouter.get("/:userId", idUser, getUser);
-
-userRouter.patch("/me", bodyUser, updateProfile);
-
-userRouter.patch("/me/avatar", avatarUser, updateAvatar);
+userRouter.get("/", getUsers)
+          .get("/me", getCurrentUser)
+          .get("/:userId", idUser, getUser)
+          .patch("/me", bodyUser, updateProfile)
+          .patch("/me/avatar", avatarUser, updateAvatar);
 
 module.exports = userRouter;
