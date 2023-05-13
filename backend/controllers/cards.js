@@ -37,7 +37,7 @@ const changeLike = (req, res, addOrPull, next) => {
   Card.findByIdAndUpdate(req.params.cardId, addOrPull, { new: true })
     .orFail()
     .populate(["owner", "likes"])
-    .then((card) => res.send({ card }))
+    .then((card) => res.send(card))
     .catch(next);
 };
 
