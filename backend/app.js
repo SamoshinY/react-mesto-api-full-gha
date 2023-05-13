@@ -32,8 +32,8 @@ mongoose.connect("mongodb://127.0.0.1:27017/mestodb");
 // app.options("*", cors(corsOptions))
 // app;
 app
-  .options("*", cors(corsOptions))
-  .use(cors(corsOptions))
+  .options("*", corsHandler)
+  .use(corsHandler)
   .use(corsHandler)
   .use(express.json())
   .use(helmet())
