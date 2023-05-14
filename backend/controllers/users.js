@@ -13,7 +13,7 @@ module.exports.login = (req, res, next) => {
       const token = jwt.sign(
         { _id: user._id },
         NODE_ENV === "production" ? JWT_SECRET : "dev-secret",
-        { expiresIn: "7d" }
+        { expiresIn: "7d" },
       );
       res.cookie("jwt", token, {
         maxAge: 3600000 * 24 * 7,
@@ -29,21 +29,22 @@ module.exports.login = (req, res, next) => {
 module.exports.deleteJwt = (req, res, next) => {
   res.cookie("jwt", "undefined");
   res.send({ message: "successful exit" });
+  next();
 };
 
 module.exports.createUser = (req, res, next) => {
-  const { name, about, avatar, email } = req.body;
+  const {
+    name, about, avatar, email,
+  } = req.body;
   bcrypt
     .hash(req.body.password, 10)
-    .then((hash) =>
-      User.create({
-        name,
-        about,
-        avatar,
-        email,
-        password: hash,
-      })
-    )
+    .then((hash) => User.create({
+      name,
+      about,
+      avatar,
+      email,
+      password: hash,
+    }))
     .then((user) => {
       const data = user.toObject();
       delete data.password;
