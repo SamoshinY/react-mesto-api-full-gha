@@ -23,6 +23,11 @@ app
   .use(rateLimiter)
   .use(cookieParser())
   .use(requestLogger)
+  .get('/crash-test', () => {
+    setTimeout(() => {
+      throw new Error('Сервер сейчас упадёт');
+    }, 0);
+  })
   .use(router)
   .use(errorLogger)
   .use(errors())
