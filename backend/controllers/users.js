@@ -27,7 +27,7 @@ module.exports.login = (req, res, next) => {
 };
 
 module.exports.deleteJwt = (req, res, next) => {
-  res.cookie("jwt", undefined);
+  res.cookie("jwt", "undefined");
   res.send({ message: "successful exit" });
 };
 
