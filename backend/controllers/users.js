@@ -58,23 +58,37 @@ module.exports.createUser = (req, res, next) => {
     });
 };
 
-module.exports.getCurrentUser = (req, res, next) => {
-  User.findById(req.user._id)
+const findUser = (req, res, data, next) => {
+  User.findById(data)
     .orFail()
     .then((user) => res.send(user))
     .catch(next);
 };
+
+module.exports.getCurrentUser = (req, res, next) => {
+  findUser(req, res, req.user._id, next);
+};
+
+module.exports.getUser = (req, res, next) => {
+  findUser(req, res, req.params.userId, next);
+};
+
+// module.exports.getUser = (req, res, next) => {
+//   User.findById(req.params.userId)
+//     .orFail()
+//     .then((user) => res.send(user))
+//     .catch(next);
+// };
+// module.exports.getCurrentUser = (req, res, next) => {
+//   User.findById(req.user._id)
+//     .orFail()
+//     .then((user) => res.send(user))
+//     .catch(next);
+// };
 
 module.exports.getUsers = (req, res, next) => {
   User.find({})
     .then((users) => res.send(users))
-    .catch(next);
-};
-
-module.exports.getUser = (req, res, next) => {
-  User.findById(req.params.userId)
-    .orFail()
-    .then((user) => res.send(user))
     .catch(next);
 };
 
