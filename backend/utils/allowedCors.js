@@ -1,8 +1,8 @@
 const allowedCors = [
   "https://praktikum.tk",
   "http://praktikum.tk",
-  "http://samoshin.nomoredomains.monster",
-  "https://samoshin.nomoredomains.monster",
+  "http://samoshin.pro",
+  "https://samoshin.pro",
   "localhost:3000",
 ];
 

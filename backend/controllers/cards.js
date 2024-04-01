@@ -21,7 +21,7 @@ module.exports.deleteCard = (req, res, next) => {
   Card.findById(req.params.cardId)
     .orFail()
     .then((card) => {
-      if ((card.owner).toString() === req.user._id) {
+      if (card.owner.toString() === req.user._id) {
         Card.deleteOne(card._id)
           .orFail()
           .then(res.send({ message: "Карточка удалена" }))
