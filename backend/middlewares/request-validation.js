@@ -9,7 +9,9 @@ module.exports.bodyCard = celebrate({
 });
 
 module.exports.idCard = celebrate({
-  params: Joi.object().keys({ cardId: Joi.string().required().hex().length(24) }),
+  params: Joi.object().keys({
+    cardId: Joi.string().required().hex().length(24),
+  }),
 });
 
 module.exports.bodyUser = celebrate({
@@ -20,7 +22,9 @@ module.exports.bodyUser = celebrate({
 });
 
 module.exports.idUser = celebrate({
-  params: Joi.object().keys({ userId: Joi.string().required().hex().length(24) }),
+  params: Joi.object().keys({
+    userId: Joi.string().required().hex().length(24),
+  }),
 });
 
 module.exports.avatarUser = celebrate({
@@ -32,7 +36,7 @@ module.exports.avatarUser = celebrate({
 module.exports.signin = celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
-    password: Joi.string().required().min(8),
+    password: Joi.string().required().min(4),
   }),
 });
 
